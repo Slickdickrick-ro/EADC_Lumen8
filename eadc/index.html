@@ -1,0 +1,440 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Luminant Lifeforms - Light That Lives</title>
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Vanta.js Background -->
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+
+  <!-- Feather Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #0a0a12;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+
+    .vanta-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .glow-text {
+      text-shadow: 0 0 15px rgba(0, 255, 157, 0.7), 0 0 30px rgba(0, 184, 255, 0.3);
+    }
+
+    .gradient-border {
+      border: 2px solid transparent;
+      background: 
+        linear-gradient(#0a0a12, #0a0a12) padding-box,
+        linear-gradient(135deg, #00ff9d, #00b8ff) border-box;
+      border-radius: 16px;
+    }
+
+    .symbol-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Mobile touch feedback */
+    .hover\:bg-cyan-400\/10 {
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-hover:hover,
+    .btn-hover:active {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 255, 157, 0.2);
+    }
+
+    /* Section padding for mobile */
+    .py-24 {
+      @apply py-16;
+    }
+
+    /* Fade-in on scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile nav */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 10, 18, 0.95);
+      backdrop-filter: blur(12px);
+      z-index: 999;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .hamburger {
+      cursor: pointer;
+      width: 30px;
+      height: 24px;
+      flex: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #00ff9d;
+      margin: 5px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-6px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-6px, -6px);
+    }
+  </style>
+</head>
+<body class="relative">
+
+  <!-- Vanta.js Background -->
+  <div id="vanta-bg" class="vanta-bg"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-black/40 backdrop-blur-md border-b border-cyan-900/30 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <img src="https://via.placeholder.com/80/000000/00ff9d?text=EADC" alt="EADC Logo" class="h-10 mr-2 rounded-lg" />
+        <span class="text-teal-400 font-bold text-xl">EADC</span>
+        <span class="ml-2 text-slate-300 text-sm md:text-base">Light That Lives</span>
+      </div>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex space-x-8">
+        <a href="#vision" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 font-medium">Vision</a>
+        <a href="#technology" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 font-medium">Technology</a>
+        <a href="#products" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 font-medium">Products</a>
+        <a href="#team" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 font-medium">Team</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button class="bg-transparent border border-cyan-400 text-cyan-400 px-4 py-2 rounded-full text-sm mr-4">Contact</button>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#vision" class="text-2xl text-cyan-400 font-medium" onclick="closeMobileMenu()">Vision</a>
+      <a href="#technology" class="text-2xl text-cyan-400 font-medium" onclick="closeMobileMenu()">Technology</a>
+      <a href="#products" class="text-2xl text-cyan-400 font-medium" onclick="closeMobileMenu()">Products</a>
+      <a href="#team" class="text-2xl text-cyan-400 font-medium" onclick="closeMobileMenu()">Team</a>
+      <button class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-full font-medium mt-4">Contact Us</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center pt-28 px-6 relative">
+    <div class="max-w-5xl mx-auto text-center z-10">
+      <div class="symbol-animation mb-6">
+        <span class="text-6xl text-cyan-400">💡</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 glow-text leading-tight">
+        Light That <span class="text-cyan-400">Lives</span>
+      </h1>
+      <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+        The next evolution of illumination: self-sustaining, intelligent bioluminescent organisms that adapt to their environment.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <button class="btn-hover bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/30 transition-all">
+          Explore Technology
+        </button>
+        <button class="btn-hover bg-transparent border-2 border-cyan-400 text-cyan-400 px-6 py-3 sm:px-8 sm:py-4 rounded-full text-lg font-semibold hover:bg-cyan-400/10 transition-all">
+          Watch Demo
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision Section -->
+  <section id="vision" class="py-16 px-6 bg-gradient-to-b from-black/80 to-gray-900/80">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 fade-in">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Our <span class="text-cyan-400">Vision</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="fade-in">
+          <h3 class="text-2xl sm:text-3xl font-bold mb-4">Reimagining Light from the Ground Up</h3>
+          <p class="text-base sm:text-lg text-gray-300 mb-4">
+            We're not just improving lighting — we're redefining what light can be. Our luminant lifeforms are living, breathing sources of illumination.
+          </p>
+          <p class="text-base sm:text-lg text-gray-300">
+            Imagine streetlights that brighten as you approach, or home lighting that shifts with your mood — all without electricity.
+          </p>
+        </div>
+        <div class="gradient-border rounded-2xl p-1 fade-in">
+          <img src="https://picsum.photos/seed/biolight/600/400" alt="EADC Luminant" class="rounded-xl w-full" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Section -->
+  <section id="technology" class="py-16 px-6 bg-gray-900/50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 fade-in">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Core <span class="text-cyan-400">Technology</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 hover:border-cyan-400 transition-all fade-in">
+          <div class="text-cyan-400 mb-4 text-3xl flex justify-center">
+            <i data-feather="dna"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-center">Bio-Engineering</h3>
+          <p class="text-gray-300 text-center text-sm">
+            Optimized genetic pathways for maximum, efficient bioluminescence.
+          </p>
+        </div>
+        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 hover:border-cyan-400 transition-all fade-in">
+          <div class="text-cyan-400 mb-4 text-3xl flex justify-center">
+            <i data-feather="sun"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-center">Environmental Adaptation</h3>
+          <p class="text-gray-300 text-center text-sm">
+            Reacts to movement, sound, and circadian rhythms.
+          </p>
+        </div>
+        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 hover:border-cyan-400 transition-all fade-in">
+          <div class="text-cyan-400 mb-4 text-3xl flex justify-center">
+            <i data-feather="shield"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-center">Containment Systems</h3>
+          <p class="text-gray-300 text-center text-sm">
+            Secure nano-fiber enclosures — safe, sustainable, and scalable.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="py-16 px-6 bg-black/80">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 fade-in">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Product <span class="text-cyan-400">Line</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-gradient-to-b from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700 hover:border-cyan-400 transition-all fade-in">
+          <div class="text-cyan-400 mb-4 text-3xl flex justify-center">
+            <i data-feather="home"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold mb-2 text-center">Domestic Luminants</h3>
+          <p class="text-gray-400 text-center text-xs sm:text-sm">
+            Living light for your home — ambient, adaptive, alive.
+          </p>
+        </div>
+        <div class="bg-gradient-to-b from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700 hover:border-cyan-400 transition-all fade-in">
+          <div class="text-cyan-400 mb-4 text-3xl flex justify-center">
+            <i data-feather="map-pin"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold mb-2 text-center">Urban Luminants</h3>
+          <p class="text-gray-400 text-center text-xs sm:text-sm">
+            Smart city lighting that responds to people and traffic.
+          </p>
+        </div>
+        <div class="bg-gradient-to-b from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700 hover:border-cyan-400 transition-all fade-in">
+          <div class="text-cyan-400 mb-4 text-3xl flex justify-center">
+            <i data-feather="leaf"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold mb-2 text-center">Ecological Luminants</h3>
+          <p class="text-gray-400 text-center text-xs sm:text-sm">
+            Glow in response to pollution — nature’s early warning.
+          </p>
+        </div>
+        <div class="bg-gradient-to-b from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700 hover:border-cyan-400 transition-all fade-in">
+          <div class="text-cyan-400 mb-4 text-3xl flex justify-center">
+            <i data-feather="heart"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold mb-2 text-center">Medical Luminants</h3>
+          <p class="text-gray-400 text-center text-xs sm:text-sm">
+            Glow diagnostics for pathogens and biomarkers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="py-16 px-6 bg-gradient-to-b from-gray-900/80 to-black/80">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 fade-in">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Our <span class="text-cyan-400">Team</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-gray-800/30 p-6 rounded-xl border border-gray-700 hover:border-cyan-400 transition-all fade-in">
+          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 overflow-hidden border-2 border-cyan-500/30">
+            <img src="https://picsum.photos/seed/scientist/200/200" alt="Dr. Viktoria Riley" class="w-full h-full object-cover" />
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-center mb-1">Dr. Viktoria Riley</h3>
+          <p class="text-cyan-400 text-center text-sm mb-3">Chief Scientist</p>
+          <p class="text-gray-300 text-center text-xs sm:text-sm">
+            Former MIT synthetic biology researcher with 15+ years in genetic engineering.
+          </p>
+        </div>
+        <div class="bg-gray-800/30 p-6 rounded-xl border border-gray-700 hover:border-cyan-400 transition-all fade-in">
+          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 overflow-hidden border-2 border-cyan-500/30">
+            <img src="https://picsum.photos/seed/ceo/200/200" alt="Lumina Vale" class="w-full h-full object-cover" />
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-center mb-1">Lumina Vale</h3>
+          <p class="text-cyan-400 text-center text-sm mb-3">CEO</p>
+          <p class="text-gray-300 text-center text-xs sm:text-sm">
+            Serial entrepreneur with a vision for living technology.
+          </p>
+        </div>
+        <div class="bg-gray-800/30 p-6 rounded-xl border border-gray-700 hover:border-cyan-400 transition-all fade-in">
+          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 overflow-hidden border-2 border-cyan-500/30">
+            <img src="https://picsum.photos/seed/cto/200/200" alt="Dr. Charlie Allington" class="w-full h-full object-cover" />
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-center mb-1">Dr. Charlie P Allington</h3>
+          <p class="text-cyan-400 text-center text-sm mb-3">CTO</p>
+          <p class="text-gray-300 text-center text-xs sm:text-sm">
+            Nanotechnology expert in biological containment systems.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 px-6 bg-black border-t border-gray-800">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-center md:text-left">
+          <h3 class="text-xl font-bold mb-2">EADC Pty Ltd</h3>
+          <p class="text-slate-400 text-sm">
+            Engineered Autonomous Dynamic Chromatophores — Light That Lives
+          </p>
+        </div>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+            <i data-feather="twitter"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+            <i data-feather="linkedin"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+            <i data-feather="github"></i>
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500 text-xs">
+        <p>&copy; 2025 EADC Pty Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Initialize Vanta.js Globe
+    window.addEventListener("load", () => {
+      VANTA.GLOBE({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200,
+        minWidth: 200,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x00ffff,
+        backgroundColor: 0x0a0a12,
+        size: 0.8
+      });
+
+      // Fade-in on scroll
+      const fadeElems = document.querySelectorAll('.fade-in');
+      const fadeInOnScroll = () => {
+        fadeElems.forEach(el => {
+          const elemTop = el.getBoundingClientRect().top;
+          const isVisible = elemTop < window.innerHeight * 0.9;
+          if (isVisible) el.classList.add('visible');
+        });
+      };
+
+      fadeInOnScroll();
+      window.addEventListener('scroll', fadeInOnScroll);
+    });
+
+    // Initialize Feather Icons
+    feather.replace();
+
+    // Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+
+    function closeMobileMenu() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('active');
+    }
+  </script>
+</body>
+</html>
