@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +9,8 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Vanta.js Background -->
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+  <!-- Vanta.js Background - Replaced with custom background for GIF -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script> -->
 
   <!-- Feather Icons -->
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -29,13 +26,18 @@
       overflow-x: hidden;
     }
 
-    .vanta-bg {
+    /* Custom Background Styling for GIF */
+    .custom-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
+      background-image: url('https://i.imgur.com/your-motion-gif-background.gif'); /* **PLACE YOUR MOTION GIF URL HERE** */
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.6) grayscale(0.2); /* Adjust for desired mood */
     }
 
     .glow-text {
@@ -44,7 +46,7 @@
 
     .gradient-border {
       border: 2px solid transparent;
-      background: 
+      background:
         linear-gradient(#0a0a12, #0a0a12) padding-box,
         linear-gradient(135deg, #00ff9d, #00b8ff) border-box;
       border-radius: 16px;
@@ -141,15 +143,15 @@
 </head>
 <body class="relative">
 
-  <!-- Vanta.js Background -->
-  <div id="vanta-bg" class="vanta-bg"></div>
+  <!-- Custom Background (replace Vanta.js) -->
+  <div class="custom-bg"></div>
 
   <!-- Navigation -->
   <nav class="fixed w-full z-50 bg-black/40 backdrop-blur-md border-b border-cyan-900/30 px-6 py-4">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <!-- Logo -->
       <div class="flex items-center">
-        <img src="https://via.placeholder.com/80/000000/00ff9d?text=EADC" alt="EADC Logo" class="h-10 mr-2 rounded-lg" />
+        <img src="https://i.imgur.com/D4s6S0F.png" alt="EADC Logo" class="h-10 mr-2 rounded-lg" />
         <span class="text-teal-400 font-bold text-xl">EADC</span>
         <span class="ml-2 text-slate-300 text-sm md:text-base">Light That Lives</span>
       </div>
@@ -160,6 +162,8 @@
         <a href="#technology" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 font-medium">Technology</a>
         <a href="#products" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 font-medium">Products</a>
         <a href="#team" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 font-medium">Team</a>
+        <a href="#investors" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 font-medium">Investors</a>
+        <a href="#donate" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 font-medium">Donate</a>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -179,6 +183,8 @@
       <a href="#technology" class="text-2xl text-cyan-400 font-medium" onclick="closeMobileMenu()">Technology</a>
       <a href="#products" class="text-2xl text-cyan-400 font-medium" onclick="closeMobileMenu()">Products</a>
       <a href="#team" class="text-2xl text-cyan-400 font-medium" onclick="closeMobileMenu()">Team</a>
+      <a href="#investors" class="text-2xl text-cyan-400 font-medium" onclick="closeMobileMenu()">Investors</a>
+      <a href="#donate" class="text-2xl text-cyan-400 font-medium" onclick="closeMobileMenu()">Donate</a>
       <button class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-full font-medium mt-4">Contact Us</button>
     </div>
   </nav>
@@ -222,9 +228,14 @@
           <p class="text-base sm:text-lg text-gray-300">
             Imagine streetlights that brighten as you approach, or home lighting that shifts with your mood — all without electricity.
           </p>
+          <h3 class="text-2xl sm:text-3xl font-bold mt-8 mb-4">The Future is Organic</h3>
+          <img src="https://i.imgur.com/Yh3XnCj.png" alt="EADC Applications" class="rounded-xl w-full my-4" loading="lazy" />
+          <p class="text-base sm:text-lg text-gray-300">
+            From urban infrastructure to vertical farming and architectural art, EADC is illuminating the future, organically.
+          </p>
         </div>
         <div class="gradient-border rounded-2xl p-1 fade-in">
-          <img src="https://picsum.photos/seed/biolight/600/400" alt="EADC Luminant" class="rounded-xl w-full" loading="lazy" />
+          <img src="https://i.imgur.com/x0qjP7w.png" alt="EADC Luminant" class="rounded-xl w-full" loading="lazy" />
         </div>
       </div>
     </div>
@@ -237,7 +248,7 @@
         <h2 class="text-3xl sm:text-4xl font-bold mb-4">Core <span class="text-cyan-400">Technology</span></h2>
         <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full"></div>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 hover:border-cyan-400 transition-all fade-in">
           <div class="text-cyan-400 mb-4 text-3xl flex justify-center">
             <i data-feather="dna"></i>
@@ -265,6 +276,17 @@
             Secure nano-fiber enclosures — safe, sustainable, and scalable.
           </p>
         </div>
+      </div>
+      <div class="fade-in text-center mt-12">
+        <h3 class="text-2xl sm:text-3xl font-bold mb-4">Our Technological Edge</h3>
+        <img src="https://i.imgur.com/kS94nEa.png" alt="EADC Technology Comparison" class="rounded-xl w-full mx-auto my-6" loading="lazy" />
+        <p class="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
+          EADC represents a paradigm shift from traditional and even modern lighting solutions, offering living, adaptive, and self-sustaining illumination.
+        </p>
+        <img src="https://i.imgur.com/mO2g15R.png" alt="EADC Performance Metrics" class="rounded-xl w-full mx-auto my-6" loading="lazy" />
+        <p class="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
+          Our HEK Protocol ensures 100% completion of advanced bio-engineering for unparalleled performance and system optimization.
+        </p>
       </div>
     </div>
   </section>
@@ -314,6 +336,13 @@
           </p>
         </div>
       </div>
+      <div class="text-center mt-12 fade-in">
+        <h3 class="text-2xl sm:text-3xl font-bold mb-4">Experience the Biolamp</h3>
+        <img src="https://i.imgur.com/rN3lQ5u.png" alt="Lumina Vale with Biolamp" class="rounded-xl w-full mx-auto my-6 max-w-2xl" loading="lazy" />
+        <p class="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
+          Our CEO and ambassador, Lumina Vale, showcasing the elegant simplicity and powerful impact of the EADC Biolamp.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -337,7 +366,7 @@
         </div>
         <div class="bg-gray-800/30 p-6 rounded-xl border border-gray-700 hover:border-cyan-400 transition-all fade-in">
           <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 overflow-hidden border-2 border-cyan-500/30">
-            <img src="https://picsum.photos/seed/ceo/200/200" alt="Lumina Vale" class="w-full h-full object-cover" />
+            <img src="https://i.imgur.com/8Q0N38j.png" alt="Lumina Vale" class="w-full h-full object-cover" />
           </div>
           <h3 class="text-lg sm:text-xl font-bold text-center mb-1">Lumina Vale</h3>
           <p class="text-cyan-400 text-center text-sm mb-3">CEO</p>
@@ -356,6 +385,54 @@
           </p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Investor Section (New) -->
+  <section id="investors" class="py-16 px-6 bg-gray-900/50">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="text-center mb-12 fade-in">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Investor <span class="text-cyan-400">Outlook</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full"></div>
+      </div>
+      <p class="text-lg sm:text-xl text-gray-300 mb-8 max-w-4xl mx-auto fade-in">
+        EADC is poised for significant growth, transforming the global illumination market with sustainable, living technology. Join us in shaping the future of light.
+      </p>
+      <img src="https://i.imgur.com/b9UaQvX.png" alt="Global Market Transformation Forecast" class="rounded-xl w-full mx-auto my-8 max-w-4xl fade-in" loading="lazy" />
+      <img src="https://i.imgur.com/K3aYvUu.png" alt="Development Forecast" class="rounded-xl w-full mx-auto my-8 max-w-4xl fade-in" loading="lazy" />
+      <div class="fade-in mt-12">
+        <h3 class="text-2xl sm:text-3xl font-bold mb-4">Environmental Impact: A New Era</h3>
+        <img src="https://i.imgur.com/W2oW61P.png" alt="E-waste Landscape" class="rounded-xl w-full mx-auto my-6 max-w-3xl" loading="lazy" />
+        <p class="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
+          Our technology offers a tangible solution to the growing crisis of electronic waste, providing sustainable alternatives that harmonize with nature.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate Section (New) -->
+  <section id="donate" class="py-16 px-6 bg-black/80">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="text-center mb-12 fade-in">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">Support <span class="text-cyan-400">Our Mission</span></h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full"></div>
+      </div>
+      <p class="text-lg sm:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed fade-in">
+        Your contribution fuels our research and development, helping us bring sustainable, living light to communities worldwide and combat electronic waste.
+      </p>
+      <div class="gradient-border rounded-2xl p-1 mb-8 fade-in">
+        <img src="https://via.placeholder.com/800x450/000000/00ff9d?text=Impact+of+Your+Donation" alt="Impact of Donation" class="rounded-xl w-full" loading="lazy" />
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-4 mb-8 fade-in">
+        <button class="btn-hover bg-gray-800/50 border border-gray-700 text-cyan-400 px-6 py-3 rounded-full text-lg font-semibold hover:border-cyan-400 hover:bg-cyan-400/10 transition-all">$25</button>
+        <button class="btn-hover bg-gray-800/50 border border-gray-700 text-cyan-400 px-6 py-3 rounded-full text-lg font-semibold hover:border-cyan-400 hover:bg-cyan-400/10 transition-all">$50</button>
+        <button class="btn-hover bg-gray-800/50 border border-gray-700 text-cyan-400 px-6 py-3 rounded-full text-lg font-semibold hover:border-cyan-400 hover:bg-cyan-400/10 transition-all">$100</button>
+        <input type="number" placeholder="Other amount" class="w-36 bg-gray-800/50 border border-gray-700 text-cyan-400 px-6 py-3 rounded-full text-lg text-center placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-all" />
+      </div>
+      <button class="btn-hover bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-4 rounded-full text-xl font-semibold hover:shadow-lg hover:shadow-cyan-500/30 transition-all fade-in">
+        Donate Now
+      </button>
     </div>
   </section>
 
@@ -389,52 +466,25 @@
 
   <!-- Scripts -->
   <script>
-    // Initialize Vanta.js Globe
-    window.addEventListener("load", () => {
-      VANTA.GLOBE({
-        el: "#vanta-bg",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200,
-        minWidth: 200,
-        scale: 1.0,
-        scaleMobile: 1.0,
-        color: 0x00ffff,
-        backgroundColor: 0x0a0a12,
-        size: 0.8
-      });
+    // Vanta.js Initialization (Removed - using custom-bg)
+    // window.addEventListener("load", () => {
+    //   VANTA.GLOBE({
+    //     el: "#vanta-bg",
+    //     mouseControls: true,
+    //     touchControls: true,
+    //     gyroControls: false,
+    //     minHeight: 200,
+    //     minWidth: 200,
+    //     scale: 1.0,
+    //     scaleMobile: 1.0,
+    //     color: 0x00ffff,
+    //     backgroundColor: 0x0a0a12,
+    //     size: 0.8
+    //   });
+    // });
 
-      // Fade-in on scroll
-      const fadeElems = document.querySelectorAll('.fade-in');
-      const fadeInOnScroll = () => {
-        fadeElems.forEach(el => {
-          const elemTop = el.getBoundingClientRect().top;
-          const isVisible = elemTop < window.innerHeight * 0.9;
-          if (isVisible) el.classList.add('visible');
-        });
-      };
-
-      fadeInOnScroll();
-      window.addEventListener('scroll', fadeInOnScroll);
-    });
-
-    // Initialize Feather Icons
-    feather.replace();
-
-    // Mobile Menu Toggle
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-    });
-
-    function closeMobileMenu() {
-      hamburger.classList.remove('active');
-      mobileMenu.classList.remove('active');
-    }
-  </script>
-</body>
-</html>
+    // Fade-in on scroll
+    const fadeElems = document.querySelectorAll('.fade-in');
+    const fadeInOnScroll = () => {
+      fadeElems.forEach(el => {
+        const elem
