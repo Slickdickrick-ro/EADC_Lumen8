@@ -19,7 +19,7 @@
       "title": "The Domestic Biolamp",
       "heading": "The First Light That Breathes With You",
       "body": "Glows up to 8 hours in darkness. Recharges with ambient daylight. Requires only monthly water refresh. Sealed, maintenance-free ecosystem. Available in Ocean Blue, Forest Green, Twilight Violet.",
-      "image": "images/image34.png",
+      "image": "/eadc/images/image34.png",
       "alt": "Domestic Biolamp glowing in a home"
     },
     {
@@ -42,4 +42,5 @@
       "body": "We’re not replacing LEDs — we’re evolving light. Future versions will <strong>breathe</strong> with indoor air quality, <strong>shift color</strong> with circadian rhythms, and even <strong>respond to touch</strong>. At EADC, we believe technology should not dominate nature — it should <strong>become</strong> nature. The age of electric light is ending. The era of <strong>living light</strong> has begun.",
       "image": "images/image1.png",
       "alt": "Concept art of responsive living light in a home"}
+
 }
